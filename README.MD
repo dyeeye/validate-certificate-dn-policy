@@ -15,8 +15,21 @@ certificate only for EAPI #2.
 
 ![DLB Example](docs/DLB.png)
 
-In this case, on DLB, you need to set Client Certificate Validation to Optional. This means that the client certificate still
+In this case, on DLB, you need to set **Client Certificate Validation** to **Optional**. This means that the client certificate still
 will be validated; however, the wrong certificate won't be stopped. The Custom Policy will do this.
+
+## How it works?
+
+1. DLB receives request
+2. DLB checks the client certificate
+3. DLB set **x-ssl-client-verify** header with validation outcome. Possible value are **SUCCESS**, **NONE**, **FAILED**
+4. DLB set **x-ssl-client-dn** header with client certificate DN.
+5. DLB calls API and reaches our Custom Policy
+6. Policy check if **x-ssl-client-verify** is **SUCCESS** and only if it is true then checks if DN in header x-ssl-client-dn is one of registered DNs in Policy configuration
+7. If both conditions are met, traffic is passed to the target API, otherwise error response is returned.
+
+Headers x-ssl-client-verify, x-ssl-client-dn can't be overwritten. If the malicious user calls DLB with those headers 
+they will be replaced by DLB (step 3 and 4).
 
 ## Installation
 
