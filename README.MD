@@ -30,6 +30,8 @@ Remember to have the MuleSoft EE server configured in **settings.xml** file. It 
 Command will deploy the custom policy to Anypoint Exchange to the business group defined in previous steps. 
 Like on the screenshot below.
 
+![Custom Policy on Anypoint Exchange](docs/policy-exchange.png)
+
 ## Policy Configuration
 
 Go to API Manager, select the environment and API that you would like to apply the policy to, and click Add policy.
@@ -39,6 +41,8 @@ On the screenshot below, you can see sample configuration. We can configure
 - error status code (optional)
 - error response (optional)
 
+![Policy Configuration](docs/policy-config.png)
+
 ### Acceptable certificate DNs
 
 Key is a human-readable name of the client certificate like MuleSoft Test Team etc.
@@ -46,6 +50,7 @@ Value is a Distinguished Name.
 
 DLB sets the following DN ``/C=PL/O=Patryk Bandurski/CN=ambassadorpatryk.com`` for following certificate 
 
+![Certificate](docs/policy-cert-dn.png)
 
 As you can see we need to add slashes for each field. 
 
