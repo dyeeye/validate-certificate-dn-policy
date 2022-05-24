@@ -8,6 +8,13 @@ Dedicated Load Balancer.
 Use this Custom Policy when you have a DLB and multiple client certificates used by multiple applications. By using
 this policy ensures that API access is limited to only an acceptable subset of registered client certificates on DLB.
 
+DLB depicted on the diagram below has three client certificated installed (client A, client B and client C). Without
+extra configuration all APIs accessible via DLB will accept those three client certificates. In many cases this is a
+security issue. Like on the diagram I would like to use client A and client B certificate only for EAPI #1 and client C
+certificate only for EAPI #2.
+
+![DLB Example](docs/dlb.png)
+
 In this case, on DLB, you need to set Client Certificate Validation to Optional. This means that the client certificate still
 will be validated; however, the wrong certificate won't be stopped. The Custom Policy will do this.
 
