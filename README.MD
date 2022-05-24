@@ -13,7 +13,7 @@ extra configuration all APIs accessible via DLB will accept those three client c
 security issue. Like on the diagram I would like to use client A and client B certificate only for EAPI #1 and client C
 certificate only for EAPI #2.
 
-![DLB Example](docs/dlb.png)
+![DLB Example](docs/DLB.png)
 
 In this case, on DLB, you need to set Client Certificate Validation to Optional. This means that the client certificate still
 will be validated; however, the wrong certificate won't be stopped. The Custom Policy will do this.
