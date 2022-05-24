@@ -1,0 +1,36 @@
+id: validate-certificate-dn-policy
+name: Validate Certificate DN Policy
+description: Policy to validated certificate DN (Distinguished Name) after 2 way TLS check done by Dedicated Load Balancer
+category: Security
+violationCategory: authentication
+type: system
+resourceLevelSupported: true
+encryptionSupported: false
+standalone: true
+requiredCharacteristics: []
+providedCharacteristics: []
+configuration:
+  - propertyName: dns
+    name: Acceptable certificate distinguished names
+    type: Keyvalues
+    description: Accepted DN. In key place meaningful name, in the value paste certificate DN
+    optional: false
+    allowMultiple: true
+  - propertyName: errorStatusCode
+    name: Error status code
+    type: int
+    minimumValue: 0
+    maximumValue: 999
+    defaultValue: 401
+    description: Status code to return when DN not matched
+    optional: true
+    sensitive: false
+    allowMultiple: false
+  - propertyName: payload
+    name: Error response
+    type: expression
+    description: Expression that sets the response payload to be returned when DN not matched
+    optional: true
+    sensitive: false
+    allowMultiple: false
+    defaultValue: #[output application/json --- {message: "Bad Client Certificate"}]
